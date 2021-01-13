@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note/services/note.dart';
 
 void main() {
   runApp(Notes());
@@ -10,6 +11,7 @@ class Notes extends StatefulWidget {
 }
 
 class _NotesState extends State<Notes> {
+    List<Note> notes = [Note('Note 1 ', 'body'), Note('Note 2', 'Body')];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,55 +26,21 @@ class _NotesState extends State<Notes> {
           crossAxisCount: 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
-          children: <Widget>[
-            Container(
-              color: Colors.white,
-              child: Text('Note'),
-            ),
-            Container(
-              color: Colors.white,
-              child: Text('Note'),
-            ),
-            Container(
-              color: Colors.white,
-              child: Text('Note'),
-            ),
-            Container(
-              color: Colors.white,
-              child: Text('Note'),
-            ),
-            Container(
-              color: Colors.white,
-              child: Text('Note'),
-            ),
-            Container(
-              color: Colors.white,
-              child: Text('Note'),
-            ),
-            Container(
-              color: Colors.white,
-              child: Text('Note'),
-            ),
-            Container(
-              color: Colors.white,
-              child: Text('Note'),
-            ),
-            Container(
-              color: Colors.white,
-              child: Text('Note'),
-            ),
-            Container(
-              color: Colors.white,
-              child: Text('Note'),
-            ),
-          ],
+          children: notes.map((e) => e.getNote()).toList()
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: null,
+          onPressed: (){
+            notes.add(Note('Note 3', 'body'));
+            setState(() {
+              
+            });
+          },
           child: Icon(Icons.add),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }
+
+
 }
