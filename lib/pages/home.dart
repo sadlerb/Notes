@@ -8,7 +8,7 @@ class Notes extends StatefulWidget {
 }
 
 class _NotesState extends State<Notes> {
-    List<Note> notes = [Note('Note 1 ', 'body'), Note('Note 2', 'Body')];
+    List<Note> notes = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +25,11 @@ class _NotesState extends State<Notes> {
           children: notes.map((e) => e.getNote()).toList()
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            setState(() {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoteEditor(),));
+          onPressed: () async {
+             final text =  await Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoteEditor(),));
+            setState((){
+              if (text != false){
+            notes.add(Note('Note3',text));}
             });
           },
           child: Icon(Icons.add),

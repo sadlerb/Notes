@@ -6,6 +6,7 @@ class NoteEditor extends StatefulWidget {
 }
 
 class _NoteEditorState extends State<NoteEditor> {
+  TextEditingController textEditingController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,9 +16,11 @@ class _NoteEditorState extends State<NoteEditor> {
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[Icon(Icons.arrow_back),Icon(Icons.check), ],
+                children: <Widget>[IconButton(icon: Icon(Icons.arrow_back), onPressed: () { Navigator.pop(context,false);},),IconButton(icon:Icon(Icons.check), onPressed: () { Navigator.pop(context,textEditingController.text); },) ,],
               ),
-              Text('Editor Page'),
+              TextField(maxLines: 8,
+                decoration: InputDecoration.collapsed(hintText: "Enter your text here"),
+                controller: textEditingController,),
             ],
           ),
         ),
